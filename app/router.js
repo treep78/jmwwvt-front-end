@@ -12,6 +12,7 @@ Router.map(function () {
   this.route('users');
   this.route('portfolio');
   this.route('contact');
+  this.route('category');
 });
 
 export default Router;
