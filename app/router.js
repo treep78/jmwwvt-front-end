@@ -12,7 +12,7 @@ Router.map(function () {
   this.route('users');
   this.route('portfolio');
   this.route('contact');
-  this.route('category');
+  this.route('category', {path: '/portfolio/category'});
 });
 
 export default Router;
