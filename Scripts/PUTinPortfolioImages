@@ -1,0 +1,14 @@
+API="http://localhost:4741"
+URL_PATH="/portfolio_images"
+TITLE="new title2"
+ID="587921e9e6f07968e3174433"
+
+curl "${API}${URL_PATH}/${ID}" \
+  --include \
+  --request PUT \
+  --header "Content-Type: application/json" \
+  --data '{
+    "portfolio_image": {
+      "title": "'"${TITLE}"'"
+    }
+  }'

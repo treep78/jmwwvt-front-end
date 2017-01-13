@@ -13,6 +13,9 @@ Router.map(function () {
   this.route('portfolio');
   this.route('contact');
   this.route('category', {path: '/portfolio/category'});
+
+  this.route('portfolio-image')
+  this.route('portfolio-image/new');
 });
 
 export default Router;
