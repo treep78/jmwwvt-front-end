@@ -1,7 +1,7 @@
 <h2>portfolio categories go here</h2>
 {{#each model as |pImage|}}
+  {{portfolio-image image=model
+                    edit='editImage'
+                    delete='deleteImage'}}
   {{pImage.title}}
 {{/each}}
-{{#link-to 'portfolio-image/new'}}
-Add an image
-{{/link-to}}

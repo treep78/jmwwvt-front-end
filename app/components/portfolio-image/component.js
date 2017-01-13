@@ -1,13 +1,14 @@
 import Ember from 'ember';
 
-export default Ember.Route.extend({
+export default Ember.Component.extend({
   model() {
     return this.get('store').createRecord('portfolio-image', {});
   },
   actions: {
-    createList(image) {
+    createImage(image) {
+      console.log("This is the image: ",image)
       image.save();
-      this.transitionTo('portfolio');
+      //this.transitionTo('portfolio');
     },
     cancelCreateList(image) {
       image.rollbackAttributes();

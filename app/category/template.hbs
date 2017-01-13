@@ -1,7 +1,9 @@
-<h2>portfolio category contents go here</h2>
-{{#each model as |pImage|}}
-  {{pImage.title}}
-{{/each}}
-{{#link-to 'portfolio-image/new'}}
-Add an image
-{{/link-to}}
+<div class="main-content">
+  <h2>portfolio category contents go here</h2>
+  {{#each model as |pImage|}}
+    {{pImage.title}}
+  {{/each}}
+  {{#link-to 'portfolio-image/new'}}
+  Add an image
+  {{/link-to}}
+</div>
