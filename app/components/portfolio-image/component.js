@@ -1,18 +1,17 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  model() {
-    return this.get('store').createRecord('portfolio-image', {});
+  model (params) {
+    let id = this.get('store').findRecord('portfolio-image', params.portfolioimage_id);
+    console.log(id);
+    return id;
   },
   actions: {
-    createImage(image) {
-      console.log("This is the image: ",image)
-      image.save();
-      //this.transitionTo('portfolio');
+    editLink() {
+      this.sendAction('editLink', this.get('image'));
     },
-    cancelCreateList(image) {
-      image.rollbackAttributes();
-      this.transitionTo('portfolio');
-    }
+    deleteLink() {
+      this.sendAction('deleteLink', this.get('image'));
+    },
   }
 });

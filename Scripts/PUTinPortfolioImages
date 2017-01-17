@@ -1,8 +1,8 @@
 API="http://localhost:4741"
 URL_PATH="/portfolio_images"
 TITLE="new title2"
-ID="587939d0a469320a859afcd4"
-TOKEN="iTULJ+9Pk6bEUFvH3TMkoyb8rwhKw4d0AZ7dtU1l41U=--XcK6zFod0SAhITQJLG8dqn+OVc+cDPna54xCzrhlua0="
+ID="58793a6fcb8bbe0b648b79f2"
+TOKEN="oDbLwHhKe7GBXnXvdsXzVCmDf+FOzDkl0MsAFeRvNfI=--917crKMv3KmK/FaMVy0WAGEJIh7ymaXPNmJkBHES6ZU="
 
 curl "${API}${URL_PATH}/${ID}" \
   --include \

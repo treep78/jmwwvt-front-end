@@ -1,4 +1,7 @@
-<h2>Create a new image</h2>
-{{new image=model
-                      save='createImage'
-                      cancel='cancelCreateImage'}}
+{{portfolio-image/edit image=model
+                        save='save'
+                        cancel='cancel'}}
+<img src={{image.link}} alt='portfolio_category' class='portfolio-image'>
+<br>
+<button class='btn btn-xs btn-default'{{action 'editLink'}}>EDIT</button>
+<button class='btn btn-xs btn-danger'{{action 'deleteLink'}}>DELETE</button>

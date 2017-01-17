@@ -16,6 +16,7 @@ Router.map(function () {
 
   this.route('portfolio-image');
   this.route('portfolio-image/new');
+  this.route('portfolio-image/edit');
 });
 
 export default Router;

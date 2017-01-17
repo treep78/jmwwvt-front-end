@@ -7,6 +7,6 @@ export default Ember.Route.extend({
   createImage(newImage) {
       console.log('inside route create image. NewImage is: ', newImage);
       let image = this.get('store').createRecord('portfolio-image', newImage);
-      item.save();
+      image.save();
     }
 });

@@ -1,7 +1,11 @@
-<h2>portfolio categories go here</h2>
-{{#each model as |pImage|}}
-  {{portfolio-image image=model
-                    edit='editImage'
-                    delete='deleteImage'}}
-  {{pImage.title}}
-{{/each}}
+<div class="main-content chalk-text">
+  <h2>portfolio categories go here</h2>
+  {{#each model as |image|}}
+    {{portfolio-image image=image
+                      editLink='editLink'
+                      deleteLink='deleteLink'}}
+  {{/each}}
+  {{#link-to 'portfolio-image/new'}}
+  Add a link
+  {{/link-to}}
+</div>

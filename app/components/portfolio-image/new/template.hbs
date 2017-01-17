@@ -1,0 +1,10 @@
+<form {{action 'save' on='submit'}}>
+  {{input placeholder='Title'
+          value=image.title}}
+  {{input placeholder='Description'
+          value=image.description}}
+  {{input placeholder='Link'
+          value=image.link}}
+  <button type='submit' class='btn btn-xs'>Save</button>
+  <button {{action 'cancel'}} class='btn btn-xs btn-danger'>Cancel</button>
+</form>
