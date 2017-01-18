@@ -4,8 +4,14 @@
     {{portfolio-image image=image
                       editLink='editLink'
                       deleteLink='deleteLink'}}
+    {{image.category}}
   {{/each}}
   {{#link-to 'portfolio-image/new'}}
   Add a link
   {{/link-to}}
+</div>
+<div class="categories">
+  {{#each category as |tag|}}
+    {{tag}}
+  {{/each}}
 </div>

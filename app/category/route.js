@@ -2,11 +2,19 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model(params) {
-    return this.get('store').find('portfolio-image', params.image_id);
+    console.log('happening');
+    let imgIn = this.get('store').find('portfolio-image', params.image_id);
+    console.log('Category: ', imgIn.get('category-image'));
+    let imgOut = this.get('store').findRecord('category', {category: imgIn.get('category')});
+    return imgOut;
   },
-  // createImage(newImage) {
-  //     console.log('inside route create image. NewImage is: ', newImage);
-  //     let image = this.get('store').createRecord('category-image', newImage);
-  //     image.save();
-  //   }
+  image(model) {
+    let imgOut = this.get('store').findRecord('category', {category: model.get('category')});
+    return imgOut;
+  },
+  actions: {
+    deleteLink(image){
+      image.destroyRecord();
+    },
+  }
 });

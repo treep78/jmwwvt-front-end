@@ -1,10 +1,19 @@
 <div class="main-content">
   <h2>portfolio category contents go here</h2>
-  {{model.title}}
-  {{!-- {{#each model as |pImage|}}
-    {{pImage.title}}
+  {{model.category}}
+  {{#each image as |image|}}
+    {{#link-to 'category' image}}
+      <img src={{image.link}} alt='portfolio_category' class='portfolio-image'>
+    {{/link-to}}
+    {{!-- <br>
+    {{#if loggedIn}}
+      {{#link-to 'portfolio-image/edit' image}}
+        <button class='btn btn-xs btn-default'>EDIT</button>
+      {{/link-to}}
+      <button class='btn btn-xs btn-danger'{{action 'deleteLink'}}>DELETE</button>
+    {{/if}} --}}
   {{/each}}
-  {{#link-to 'portfolio-image/new'}}
+  {{#link-to 'category/new'}}
   Add an image
-  {{/link-to}} --}}
+  {{/link-to}}
 </div>

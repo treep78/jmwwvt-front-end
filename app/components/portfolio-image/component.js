@@ -6,6 +6,12 @@ export default Ember.Component.extend({
     console.log(id);
     return id;
   },
+  auth: Ember.inject.service(),
+  loggedIn : Ember.computed.alias('auth.isAuthenticated'),
+  matchTag : Ember.computed('image', function () {
+    let match = this.get('image').get('category') !== 'z';
+    return match;
+  }),
   actions: {
     deleteLink() {
       this.sendAction('deleteLink', this.get('image'));
