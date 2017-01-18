@@ -1,12 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  model () {
-    return this.get('store').findAll('portfolio-image');
+  model(params) {
+    return this.get('store').find('portfolio-image', params.image_id);
   },
-  createImage(newImage) {
-      console.log('inside route create image. NewImage is: ', newImage);
-      let image = this.get('store').createRecord('portfolio-image', newImage);
-      image.save();
-    }
+  // createImage(newImage) {
+  //     console.log('inside route create image. NewImage is: ', newImage);
+  //     let image = this.get('store').createRecord('category-image', newImage);
+  //     image.save();
+  //   }
 });

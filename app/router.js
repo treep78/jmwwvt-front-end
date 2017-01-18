@@ -14,12 +14,11 @@ Router.map(function () {
   this.route('contact');
 
   this.route('portfolio-image/new');
-  this.route('portfolio-image/edit', {path: 'portfolio-image/edit/:portfolio-image_id'});
+  this.route('portfolio-image/edit', {path: 'portfolio-image/:portfolio_image_id/edit'});
 
-  this.route('category', function() {
-    this.route('new');
-    this.route('edit');
-  });
+  this.route('category', {path: 'category/:image_id'});
+  this.route('category/new');
+  this.route('category/edit', {path: 'category/:image_id/edit'});
 });
 
 export default Router;
