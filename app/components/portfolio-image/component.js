@@ -7,11 +7,14 @@ export default Ember.Component.extend({
     return id;
   },
   actions: {
-    editLink() {
-      this.sendAction('editLink', this.get('image'));
-    },
     deleteLink() {
       this.sendAction('deleteLink', this.get('image'));
+    },
+    save(image) {
+      this.sendAction('save', image);
+    },
+    cancel(image) {
+      this.sendAction('cancel', image);
     },
   }
 });

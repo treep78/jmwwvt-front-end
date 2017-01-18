@@ -1,7 +1,6 @@
-{{portfolio-image/edit image=model
-                        save='save'
-                        cancel='cancel'}}
 <img src={{image.link}} alt='portfolio_category' class='portfolio-image'>
 <br>
-<button class='btn btn-xs btn-default'{{action 'editLink'}}>EDIT</button>
+{{#link-to 'portfolio-image/edit'}}
+  <button class='btn btn-xs btn-default'>EDIT</button>
+{{/link-to}}
 <button class='btn btn-xs btn-danger'{{action 'deleteLink'}}>DELETE</button>

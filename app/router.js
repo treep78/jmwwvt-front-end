@@ -12,11 +12,14 @@ Router.map(function () {
   this.route('users');
   this.route('portfolio');
   this.route('contact');
-  this.route('category', {path: '/portfolio/category'});
 
-  this.route('portfolio-image');
   this.route('portfolio-image/new');
-  this.route('portfolio-image/edit');
+  this.route('portfolio-image/edit', {path: 'portfolio-image/edit/:portfolio-image_id'});
+
+  this.route('category', function() {
+    this.route('new');
+    this.route('edit');
+  });
 });
 
 export default Router;
