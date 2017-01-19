@@ -7,6 +7,7 @@ module.exports = function (environment) {
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
+    apiHost: `https://safe-bayou-26348.herokuapp.com:${port}`,
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -33,12 +34,12 @@ module.exports = function (environment) {
     let port = +('GA'.split('').reduce((p, c) =>
       p + c.charCodeAt().toString(16), '')
     );
-    ENV.apiHost = `http://localhost:${port}`;
+    ENV.apiHost = 'https://safe-bayou-26348.herokuapp.com';
   }
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.rootUrl = '/';
+    ENV.rootURL = '/jmwwvt-front-end';
     ENV.locationType = 'none';
 
     // keep test console output quieter
