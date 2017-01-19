@@ -176,7 +176,8 @@ define("jmwwvt/category/edit/template", ["exports"], function (exports) {
 });
 define('jmwwvt/category/model', ['exports', 'ember-data'], function (exports, _emberData) {
   exports['default'] = _emberData['default'].Model.extend({
-    category: _emberData['default'].attr('string')
+    category: _emberData['default'].attr('string'),
+    count: _emberData['default'].attr('string')
   });
 });
 define('jmwwvt/category/new/route', ['exports', 'ember'], function (exports, _ember) {
@@ -385,14 +386,21 @@ define('jmwwvt/components/portfolio-image/component', ['exports', 'ember'], func
   exports['default'] = _ember['default'].Component.extend({
     model: function model(params) {
       var id = this.get('store').findRecord('portfolio-image', params.portfolioimage_id);
-      console.log(id);
       return id;
     },
     auth: _ember['default'].inject.service(),
-    loggedIn: _ember['default'].computed.alias('auth.isAuthenticated'),
     matchTag: _ember['default'].computed('image', function () {
-      var match = this.get('image').get('category') !== 'siding';
+      var match = this.get('image').get('category') !== 'z';
       return match;
+    }),
+    canEdit: _ember['default'].computed('image', function () {
+      var id = this.get('auth.credentials.id');
+      var owner = this.get('image').get('_owner');
+      if (id === owner) {
+        return true;
+      } else {
+        return false;
+      }
     }),
     actions: {
       deleteLink: function deleteLink() {
@@ -408,7 +416,7 @@ define('jmwwvt/components/portfolio-image/component', ['exports', 'ember'], func
   });
 });
 define("jmwwvt/components/portfolio-image/template", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template({ "id": "6eA9VKB4", "block": "{\"statements\":[[\"block\",[\"if\"],[[\"get\",[\"matchTag\"]]],null,2]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"      \"],[\"open-element\",\"button\",[]],[\"static-attr\",\"class\",\"btn btn-xs btn-default\"],[\"flush-element\"],[\"text\",\"EDIT\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"block\",[\"link-to\"],[\"portfolio-image/edit\",[\"get\",[\"image\"]]],null,0],[\"text\",\"    \"],[\"open-element\",\"button\",[]],[\"static-attr\",\"class\",\"btn btn-xs btn-danger\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"deleteLink\"]],[\"flush-element\"],[\"text\",\"DELETE\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"  \"],[\"open-element\",\"img\",[]],[\"dynamic-attr\",\"src\",[\"unknown\",[\"image\",\"link\"]],null],[\"static-attr\",\"alt\",\"portfolio_category\"],[\"static-attr\",\"class\",\"portfolio-image\"],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n  \"],[\"open-element\",\"br\",[]],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"get\",[\"loggedIn\"]]],null,1]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "jmwwvt/components/portfolio-image/template.hbs" } });
+  exports["default"] = Ember.HTMLBars.template({ "id": "FG1T7ir3", "block": "{\"statements\":[[\"block\",[\"if\"],[[\"get\",[\"matchTag\"]]],null,2]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"      \"],[\"open-element\",\"button\",[]],[\"static-attr\",\"class\",\"btn btn-xs btn-default\"],[\"flush-element\"],[\"text\",\"EDIT\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"block\",[\"link-to\"],[\"portfolio-image/edit\",[\"get\",[\"image\"]]],null,0],[\"text\",\"    \"],[\"open-element\",\"button\",[]],[\"static-attr\",\"class\",\"btn btn-xs btn-danger\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"deleteLink\"]],[\"flush-element\"],[\"text\",\"DELETE\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"  \"],[\"open-element\",\"img\",[]],[\"dynamic-attr\",\"src\",[\"unknown\",[\"image\",\"link\"]],null],[\"static-attr\",\"alt\",\"portfolio_category\"],[\"static-attr\",\"class\",\"portfolio-image\"],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n  \"],[\"open-element\",\"br\",[]],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"get\",[\"canEdit\"]]],null,1]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "jmwwvt/components/portfolio-image/template.hbs" } });
 });
 define('jmwwvt/components/sign-in-form/component', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Component.extend({
@@ -777,7 +785,8 @@ define('jmwwvt/portfolio-image/model', ['exports', 'ember-data'], function (expo
     title: _emberData['default'].attr('string'),
     category: _emberData['default'].attr('string'),
     description: _emberData['default'].attr('string'),
-    link: _emberData['default'].attr('string')
+    link: _emberData['default'].attr('string'),
+    _owner: _emberData['default'].attr('string')
   });
 });
 define('jmwwvt/portfolio-image/new/route', ['exports', 'ember'], function (exports, _ember) {
@@ -803,11 +812,14 @@ define("jmwwvt/portfolio-image/new/template", ["exports"], function (exports) {
 });
 define('jmwwvt/portfolio/route', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Route.extend({
+    auth: _ember['default'].inject.service(),
+
     model: function model() {
       var categories = this.get('store').findAll('category');
       var images = this.get('store').findAll('portfolio-image');
-      console.log('HELP!: ', categories);
-      return { 'categories': categories, 'images': images };
+      console.log(this.get('auth.isAuthenticated'));
+      var loggedIn = this.get('auth.isAuthenticated');
+      return { 'categories': categories, 'images': images, 'loggedIn': loggedIn };
     },
     actions: {
       editLink: function editLink(image) {
@@ -824,7 +836,7 @@ define('jmwwvt/portfolio/route', ['exports', 'ember'], function (exports, _ember
   });
 });
 define("jmwwvt/portfolio/template", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template({ "id": "Cu1CQgXX", "block": "{\"statements\":[[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"main-content chalk-text\"],[\"flush-element\"],[\"text\",\"\\n  \"],[\"open-element\",\"h2\",[]],[\"flush-element\"],[\"text\",\"portfolio categories go here\"],[\"close-element\"],[\"text\",\"\\n\"],[\"block\",[\"each\"],[[\"get\",[\"model\",\"images\"]]],null,3],[\"block\",[\"each\"],[[\"get\",[\"model\",\"category\"]]],null,2],[\"block\",[\"link-to\"],[\"portfolio-image/new\"],null,1],[\"close-element\"],[\"text\",\"\\n\"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"categories\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"each\"],[[\"get\",[\"category\"]]],null,0],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"    \"],[\"append\",[\"get\",[\"tag\"]],false],[\"text\",\"\\n\"]],\"locals\":[\"tag\"]},{\"statements\":[[\"text\",\"  Add a link\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"    fghjk\\n\"]],\"locals\":[\"tag\"]},{\"statements\":[[\"text\",\"    \"],[\"append\",[\"helper\",[\"portfolio-image\"],null,[[\"image\",\"editLink\",\"deleteLink\"],[[\"get\",[\"image\"]],\"editLink\",\"deleteLink\"]]],false],[\"text\",\"\\n\"]],\"locals\":[\"image\"]}],\"hasPartials\":false}", "meta": { "moduleName": "jmwwvt/portfolio/template.hbs" } });
+  exports["default"] = Ember.HTMLBars.template({ "id": "uiwn9LoD", "block": "{\"statements\":[[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"main-content chalk-text\"],[\"flush-element\"],[\"text\",\"\\n  \"],[\"open-element\",\"h2\",[]],[\"flush-element\"],[\"text\",\"portfolio categories go here\"],[\"close-element\"],[\"text\",\"\\n\"],[\"block\",[\"each\"],[[\"get\",[\"model\",\"images\"]]],null,2],[\"block\",[\"if\"],[[\"get\",[\"model\",\"loggedIn\"]]],null,1],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"    \"],[\"open-element\",\"button\",[]],[\"static-attr\",\"class\",\"btn btn-xs btn-std\"],[\"flush-element\"],[\"text\",\"Add Image\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"block\",[\"link-to\"],[\"portfolio-image/new\"],null,0]],\"locals\":[]},{\"statements\":[[\"text\",\"    \"],[\"append\",[\"helper\",[\"portfolio-image\"],null,[[\"image\",\"editLink\",\"deleteLink\"],[[\"get\",[\"image\"]],\"editLink\",\"deleteLink\"]]],false],[\"text\",\"\\n\"]],\"locals\":[\"image\"]}],\"hasPartials\":false}", "meta": { "moduleName": "jmwwvt/portfolio/template.hbs" } });
 });
 define('jmwwvt/resolver', ['exports', 'ember-resolver'], function (exports, _emberResolver) {
   exports['default'] = _emberResolver['default'];
@@ -975,7 +987,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("jmwwvt/app")["default"].create({"name":"jmwwvt","version":"0.0.0+ea6a802c"});
+  require("jmwwvt/app")["default"].create({"name":"jmwwvt","version":"0.0.0+07a1b6e3"});
 }
 
 /* jshint ignore:end */
