@@ -3,11 +3,10 @@
 module.exports = function (environment) {
   'use strict';
   const ENV = {
-    modulePrefix: 'ga-wdi-boston.ember-auth',
+    modulePrefix: 'jmwwvt',
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
-    apiHost: `https://safe-bayou-26348.herokuapp.com4741`,
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -34,12 +33,12 @@ module.exports = function (environment) {
     let port = +('GA'.split('').reduce((p, c) =>
       p + c.charCodeAt().toString(16), '')
     );
-    ENV.apiHost = 'https://safe-bayou-26348.herokuapp.com';
+    ENV.apiHost = `http://localhost:${port}`;
   }
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.rootURL = '/jmwwvt-front-end';
+    ENV.rootURL = '/';
     ENV.locationType = 'none';
 
     // keep test console output quieter
@@ -50,7 +49,9 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
+    ENV.rootURL = '/jmwwvt-front-end';
     ENV.locationType = 'hash';
+    ENV.apiHost = 'https://safe-bayou-26348.herokuapp.com';
   }
 
   return ENV;
