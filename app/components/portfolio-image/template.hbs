@@ -1,7 +1,5 @@
 {{#if matchTag}}
-  {{#link-to 'category' image}}
-    <img src={{image.link}} alt='portfolio_category' class='portfolio-image'>
-  {{/link-to}}
+  <img src={{image.link}} alt='portfolio_category' class='portfolio-image'>
   <br>
   {{#if loggedIn}}
     {{#link-to 'portfolio-image/edit' image}}

@@ -1,10 +1,12 @@
 <div class="main-content chalk-text">
   <h2>portfolio categories go here</h2>
-  {{#each model as |image|}}
+  {{#each model.images as |image|}}
     {{portfolio-image image=image
                       editLink='editLink'
                       deleteLink='deleteLink'}}
-    {{image.category}}
+  {{/each}}
+  {{#each model.category as |tag|}}
+    fghjk
   {{/each}}
   {{#link-to 'portfolio-image/new'}}
   Add a link
