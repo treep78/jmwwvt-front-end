@@ -58,5 +58,5 @@ Given more time I'd like to fix my category filtering as well as cleaning up my 
 
 # Wireframes
 
-![Alt text](wireframe1.jpg?raw=true "Wireframe 1")
-![Alt text](wireframe2.jpg?raw=true "Wireframe 2")
+![Alt text](./wireframe1.JPG?raw=true "Wireframe 1")
+![Alt text](./wireframe2.JPG?raw=true "Wireframe 2")
