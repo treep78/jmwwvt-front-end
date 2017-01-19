@@ -55,3 +55,8 @@ This front-end ember application is designed as a web-site for a small company t
 # Future Improvements
 
 Given more time I'd like to fix my category filtering as well as cleaning up my visuals.
+
+# Wireframes
+
+![Alt text](wireframe1.jpg?raw=true "Wireframe 1")
+![Alt text](wireframe2.jpg?raw=true "Wireframe 2")
