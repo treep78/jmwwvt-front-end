@@ -1,19 +1,19 @@
 <div class="main-content chalk-text">
   <h2>portfolio categories go here</h2>
+  {{!-- <div class="categories">
+    {{#each model.categories as |tag|}}
+      {{tag.category}}: {{tag.count}}
+      <br>
+    {{/each}}
+  </div> --}}
   {{#each model.images as |image|}}
     {{portfolio-image image=image
                       editLink='editLink'
                       deleteLink='deleteLink'}}
   {{/each}}
-  {{#each model.category as |tag|}}
-    fghjk
-  {{/each}}
-  {{#link-to 'portfolio-image/new'}}
-  Add a link
-  {{/link-to}}
-</div>
-<div class="categories">
-  {{#each category as |tag|}}
-    {{tag}}
-  {{/each}}
+  {{#if model.loggedIn}}
+    {{#link-to 'portfolio-image/new'}}
+    <button class='btn btn-xs btn-std'>Add Image</button>
+    {{/link-to}}
+  {{/if}}
 </div>

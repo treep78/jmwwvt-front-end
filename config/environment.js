@@ -3,7 +3,7 @@
 module.exports = function (environment) {
   'use strict';
   const ENV = {
-    modulePrefix: 'ga-wdi-boston.ember-auth',
+    modulePrefix: 'jmwwvt',
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
@@ -38,7 +38,7 @@ module.exports = function (environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.rootUrl = '/';
+    ENV.rootURL = '/';
     ENV.locationType = 'none';
 
     // keep test console output quieter
@@ -49,7 +49,9 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
+    ENV.rootURL = '/jmwwvt-front-end';
     ENV.locationType = 'hash';
+    ENV.apiHost = 'https://safe-bayou-26348.herokuapp.com';
   }
 
   return ENV;

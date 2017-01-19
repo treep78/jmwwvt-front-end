@@ -1,7 +1,7 @@
 {{#if matchTag}}
   <img src={{image.link}} alt='portfolio_category' class='portfolio-image'>
   <br>
-  {{#if loggedIn}}
+  {{#if canEdit}}
     {{#link-to 'portfolio-image/edit' image}}
       <button class='btn btn-xs btn-default'>EDIT</button>
     {{/link-to}}

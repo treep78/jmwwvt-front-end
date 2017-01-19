@@ -1,11 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  auth: Ember.inject.service(),
+
   model () {
     let categories = this.get('store').findAll('category');
     let images =  this.get('store').findAll('portfolio-image');
-    console.log('HELP!: ',categories);
-    return {'categories': categories, 'images': images};
+    console.log(this.get('auth.isAuthenticated'));
+    let loggedIn = this.get('auth.isAuthenticated');
+    return {'categories': categories, 'images': images, 'loggedIn': loggedIn};
   },
   actions: {
     editLink(image) {
