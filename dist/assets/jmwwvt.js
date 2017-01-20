@@ -994,7 +994,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("jmwwvt/app")["default"].create({"name":"jmwwvt","version":"0.0.0+64829033"});
+  require("jmwwvt/app")["default"].create({"name":"jmwwvt","version":"0.0.0+e4523027"});
 }
 
 /* jshint ignore:end */
