@@ -6,7 +6,6 @@ export default Ember.Route.extend({
   model () {
     let categories = this.get('store').findAll('category');
     let images =  this.get('store').findAll('portfolio-image');
-    console.log(this.get('auth.isAuthenticated'));
     let loggedIn = this.get('auth.isAuthenticated');
     return {'categories': categories, 'images': images, 'loggedIn': loggedIn};
   },
