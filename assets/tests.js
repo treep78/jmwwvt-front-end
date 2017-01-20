@@ -204,7 +204,7 @@ define('jmwwvt/tests/components/portfolio-image-edit/component.jshint.lint-test'
   QUnit.module('JSHint | components/portfolio-image-edit/component.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'components/portfolio-image-edit/component.js should pass jshint.');
+    assert.ok(false, 'components/portfolio-image-edit/component.js should pass jshint.\ncomponents/portfolio-image-edit/component.js: line 13, col 19, Missing semicolon.\n\n1 error');
   });
 });
 define('jmwwvt/tests/components/portfolio-image/component.jshint.lint-test', ['exports'], function (exports) {
