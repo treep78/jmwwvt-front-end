@@ -1,16 +1,21 @@
 API="http://localhost:4741"
 URL_PATH="/portfolio_images"
 TITLE="new title2"
-ID="58793a6fcb8bbe0b648b79f2"
-TOKEN="oDbLwHhKe7GBXnXvdsXzVCmDf+FOzDkl0MsAFeRvNfI=--917crKMv3KmK/FaMVy0WAGEJIh7ymaXPNmJkBHES6ZU="
+DESC="sdfg"
+CAT="asfg"
+LINK="sadf"
+TOKEN="Fp+M0RGcmdnwWxj7CA+nTboF2XHKAIa+bBt2w7f4z5A=--qbkUEnnl+7pOi9Q+ez9gCL8i+5zQFnTR31i/x5/v7Uk="
 
-curl "${API}${URL_PATH}/${ID}" \
+curl "${API}${URL_PATH}" \
   --include \
-  --request PUT \
+  --request POST \
   --header "Content-Type: application/json" \
   --header "Authorization: Token token=${TOKEN}" \
   --data '{
     "portfolio_image": {
-      "title": "'"${TITLE}"'"
+      "title": "'"${TITLE}"'",
+      "category": "'"${CAT}"'",
+      "description": "'"${DESC}"'",
+      "link": "'"${LINK}"'"
     }
   }'
